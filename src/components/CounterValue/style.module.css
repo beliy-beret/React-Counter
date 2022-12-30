@@ -1,0 +1,9 @@
+.counter {
+    font-size: 3rem;
+}
+.onLimit {
+    color: black;
+}
+.noLimit {
+    color: red;
+}
