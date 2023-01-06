@@ -1,24 +1,25 @@
 import {FC} from 'react';
 import CounterValue from "../CounterValue/CounterValue";
 import MyButton from "../MyButton/MyButton";
-import s from './counter.module.css';
+import s from './style.module.css';
+import {CounterType} from "../../App";
 
 type ComponentPropsType = {
-  counterValue: number
-  resetCounter: () => void
-  incrementCounter: () => void
+  counter: CounterType
+  resetCurrentValue: () => void
+  incrementCurrentValue: () => void
 }
 
 const Counter: FC<ComponentPropsType> = (
-  {counterValue, resetCounter, incrementCounter}
+  {counter, resetCurrentValue, incrementCurrentValue}
 ) => {
 
   return(
     <div className={s.counter}>
-      <CounterValue currentValue={counterValue}/>
+      <CounterValue counter={counter}/>
       <div className={s.btnBlock}>
-        <MyButton onClick={incrementCounter} title={'+'} disabled={counterValue >= 5} />
-        <MyButton onClick={resetCounter} title={'reset'} disabled={counterValue <= 0}/>
+        <MyButton onClick={incrementCurrentValue} disabled={counter.current >= counter.max}>inc</MyButton>
+        <MyButton onClick={resetCurrentValue} disabled={counter.current <= counter.min}>reset</MyButton>
       </div>
     </div>
   )

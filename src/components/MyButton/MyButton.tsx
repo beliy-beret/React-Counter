@@ -1,17 +1,17 @@
-import {FC} from 'react';
+import {FC, ReactNode} from 'react';
 import s from './style.module.css';
 
 type ComponentPropsType = {
-  title: string
+  children: ReactNode
   onClick: () => void
   disabled?: boolean
 }
 
 const MyButton: FC<ComponentPropsType> = (
-  {title, onClick, disabled}
+  {children, onClick, disabled}
 ) => {
-  return(
-    <button className={s.btn} onClick={onClick} disabled={disabled}>{title}</button>
+  return (
+    <button className={s.btn} onClick={onClick} disabled={disabled}>{children}</button>
   )
 }
 

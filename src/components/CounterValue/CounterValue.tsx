@@ -1,16 +1,19 @@
 import {FC} from 'react';
 import s from './style.module.css';
+import {CounterType} from "../../App";
 
 type ComponentPropsType = {
-  currentValue: number
+  counter: CounterType
 }
 
-const CounterValue: FC<ComponentPropsType> = ({currentValue}) => {
+const CounterValue: FC<ComponentPropsType> = ({counter}) => {
 
-  const className = s.counter + " " +  (currentValue < 5 ? s.onLimit : s.noLimit);
+  const className = s.value + " " + (counter.current < counter.max ? s.onLimit : s.noLimit);
 
-  return(
-    <h1 className={className}>{currentValue}</h1>
+  return (
+    <div className={s.container}>
+      <h1 className={className}>{counter.current}</h1>
+    </div>
   )
 };
 
