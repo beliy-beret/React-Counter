@@ -1,0 +1,9 @@
+.inputComponent{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.input {
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+}

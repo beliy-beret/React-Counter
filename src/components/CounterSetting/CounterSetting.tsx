@@ -1,6 +1,7 @@
 import {ChangeEvent, FC, useState} from "react";
-import s from'./style.module.css';
+import s from './style.module.css';
 import MyButton from "../MyButton/MyButton";
+import MyInput from "../MyInput/MyInput";
 
 type ComponentPropsType = {
   submit: (formData: FormDataType) => void
@@ -14,35 +15,29 @@ export type FormDataType = {
 
 const CounterSetting: FC<ComponentPropsType> = ({submit, minValue, maxValue}) => {
 
+  const MAX_VALUE = 'maxValue';
+  const MIN_VALUE = 'minValue';
   const [formData, setFormData] = useState<FormDataType>({min: minValue, max: maxValue});
-  const minValueHandler = (e: ChangeEvent<HTMLInputElement>) => setFormData({...formData, min: Number(e.currentTarget.value)});
-  const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => setFormData({...formData, max: Number(e.currentTarget.value)});
+  const formDataHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const newValue = Number(e.currentTarget.value.trim());
+    if (e.currentTarget.name === MIN_VALUE) {
+      setFormData({...formData, min: newValue});
+    }
+    if (e.currentTarget.name === MAX_VALUE) {
+      setFormData({...formData, max: newValue});
+    }
+  }
   const submitHandler = () => submit(formData);
-  return(
-    <div className={s.container}>
-      <div>
-        <label>
-          min value
-          <input
-            type="number"
-            value={formData.min}
-            onChange={minValueHandler}
-          />
-        </label>
+
+  return (
+    <div className={s.form}>
+      <div className={s.field}>
+        <MyInput name={MIN_VALUE} type={'number'} label={'min value'} value={formData.min} onChange={formDataHandler}/>
       </div>
-      <div>
-        <label>
-          max value
-          <input
-            type="number"
-            value={formData.max}
-            onChange={maxValueHandler}
-          />
-        </label>
+      <div className={s.field}>
+        <MyInput name={MAX_VALUE} type={'number'} label={'max value'} value={formData.max} onChange={formDataHandler}/>
       </div>
-      <div>
-        <MyButton onClick={submitHandler}>set</MyButton>
-      </div>
+      <MyButton onClick={submitHandler}>set</MyButton>
     </div>
   )
 }

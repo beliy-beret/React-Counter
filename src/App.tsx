@@ -10,7 +10,7 @@ export type CounterType = {
 
 const App: FC = () => {
 
-  const [counter, setCounter] = useState<CounterType>({min: 0, max: 5, current: 0});
+  const [counter, setCounter] = useState<CounterType>({min: 0, max: 1, current: 0});
   const incrementCurrentValue = () => {
     if(counter.current < counter.max){
       setCounter({...counter, current: counter.current + 1});
@@ -37,7 +37,7 @@ const App: FC = () => {
   }, [counter]);
 
   return (
-    <div>
+    <div className={'App'}>
       <CounterSetting submit={setCounterSetting} maxValue={counter.max} minValue={counter.min} />
       <Counter
         incrementCurrentValue={incrementCurrentValue}
