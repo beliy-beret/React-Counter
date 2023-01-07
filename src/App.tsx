@@ -18,7 +18,11 @@ const App: FC = () => {
   };
   const resetCurrentValue = () => setCounter({...counter, current: 0});
   const setCounterSetting = (formData: FormDataType) => {
-    if(counter.min !== formData.min && formData.min >= 0){
+    if(
+      counter.min !== formData.min &&
+      formData.min < formData.max &&
+      formData.min >= 0
+    ){
       setCounter({...counter, min: formData.min});
     }
     if(counter.max !== formData.max && formData.max > formData.min){
