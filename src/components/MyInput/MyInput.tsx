@@ -31,7 +31,6 @@ const MyInput: FC<ComponentPropsType> = (
         type={type}
         value={value}
         onChange={onChange}
-        min={0}
       />
     </div>
   );
