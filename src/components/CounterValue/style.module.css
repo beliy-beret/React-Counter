@@ -1,12 +1,19 @@
 .container {
     width: 90%;
-    padding: 1rem;
     border-radius: 5px;
     text-align: center;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
 .value {
-    font-size: 5rem;
+    font-size: 6rem;
     margin: 0;
+}
+.message {
+    font-size: 2rem;
 }
 .onLimit {
     color: #E5B8F4;

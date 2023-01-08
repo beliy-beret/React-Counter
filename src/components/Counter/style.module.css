@@ -1,9 +1,12 @@
 .counter {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    width: 25%;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 30%;
+    height: 300px;
+    max-height: 40%;
     background-color: #2f2f31;
     border-radius: 10px;
     padding: 1rem;
@@ -11,7 +14,7 @@
     color: #E5B8F4;
 }
 .btnBlock {
-    margin-top: 1rem;
+    grid-row: 2;
     display: flex;
     justify-content: center;
     align-items: center;

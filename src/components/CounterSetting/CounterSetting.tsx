@@ -56,7 +56,7 @@ const CounterSetting: FC<ComponentPropsType> = (
   useEffect(() => {
     if(formData.min < 0){
       setFormFieldValid({...formFieldValid, minIsValid: false});
-      setError('Invalid value. Value must be greater than 0');
+      setError('Invalid value. Value must be greater than "0"');
     } else if(formData.max <= formData.min){
       setFormFieldValid({...formFieldValid, maxIsValid: false});
       setError('Invalid value. Value must be greater than min value');

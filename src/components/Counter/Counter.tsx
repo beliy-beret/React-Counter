@@ -26,7 +26,7 @@ const Counter: FC<ComponentPropsType> = (
     <div className={s.counter}>
       <CounterValue counter={counter} error={error} isEdit={isEdit}/>
       <div className={s.btnBlock}>
-        <MyButton onClick={incrementCurrentValue} disabled={counter.current >= counter.max}>inc</MyButton>
+        <MyButton onClick={incrementCurrentValue} disabled={isEdit || counter.current >= counter.max}>inc</MyButton>
         <MyButton onClick={resetCurrentValue} disabled={counter.current <= counter.min}>reset</MyButton>
       </div>
     </div>

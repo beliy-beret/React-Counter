@@ -4,7 +4,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.8rem;
-    width: 25%;
+    width: 30%;
+    height: 300px;
+    max-height: 40%;
     background-color: #2f2f31;
     border-radius: 10px;
     padding: 1rem;
@@ -13,6 +15,10 @@
 .field {
     font-size: 2rem;
     color: #FFFFFF;
+    flex-basis: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 .field input {
     font-size: 1.3rem;

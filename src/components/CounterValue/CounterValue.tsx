@@ -12,14 +12,15 @@ const CounterValue: FC<ComponentPropsType> = ({counter, error, isEdit}) => {
 
   const className = s.container + " " +
     (counter.current < counter.max ? s.onLimit : s.noLimit) + ' ' +
-    (error ? s.noLimit : s.onLimit)
+    (error ? s.noLimit : s.onLimit) + " " +
+    (isEdit && '')
 
 
   const getValue = () => {
     if(error){
-      return <span>{error}</span>
+      return <span className={s.message}>{error}</span>
     } else if(isEdit){
-      return <span>Enter value and press 'set'</span>
+      return <span className={s.message}>Enter value and press 'set'</span>
     } else {
       return <span className={s.value}>{counter.current}</span>
     }

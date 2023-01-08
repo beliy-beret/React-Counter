@@ -15,24 +15,44 @@ const App: FC = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
   // Counter options
-  const [counter, setCounter] = useState<CounterType>({min: 0, max: 1, current: 0});
+  const initialCounterValue: CounterType = {
+    min: 0,
+    max: 1,
+    current: 0
+  }
+  const initialCounter = () => {
+    const storageCounter = localStorage.getItem('counter');
+    if (storageCounter) {
+      const parseValue = JSON.parse(storageCounter);
+      return parseValue
+    }
+    return initialCounterValue
+  }
+  const [counter, setCounter] = useState<CounterType>(initialCounter);
+
   const incrementCurrentValue = () => {
-    if(counter.current < counter.max){
+    if (counter.current < counter.max) {
       setCounter({...counter, current: counter.current + 1});
     }
   };
+
   const resetCurrentValue = () => setCounter({...counter, current: counter.min});
+
   const setCounterSetting = (formData: FormDataType) => {
-    if(formData.min > 0 && formData.max > formData.min){
+    if (
+      formData.min >= 0 &&
+      formData.max > formData.min
+    ) {
       setCounter({...counter, ...formData});
-      setError('')
+      setError('');
     } else {
       setError('Invalid form data');
     }
   };
 
   useEffect(() => {
-    if(counter.current < counter.min){
+    localStorage.setItem('counter', JSON.stringify(counter));
+    if (counter.current < counter.min) {
       setCounter({...counter, current: counter.min});
     }
   }, [counter]);
