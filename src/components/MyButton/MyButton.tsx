@@ -12,7 +12,7 @@ const MyButton: FC<ComponentPropsType> = (
 ) => {
   return (
     <button className={s.btn} onClick={onClick} disabled={disabled}>{children}</button>
-  )
-}
+  );
+};
 
 export default MyButton;

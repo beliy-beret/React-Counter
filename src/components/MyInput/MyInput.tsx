@@ -9,6 +9,7 @@ type ComponentPropsType = {
   label: string
   value: number
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  className?: string
 }
 
 const MyInput: FC<ComponentPropsType> = (
@@ -17,7 +18,9 @@ const MyInput: FC<ComponentPropsType> = (
     name,
     value,
     label,
-    onChange}
+    className = '',
+    onChange
+  }
 ) => {
 
   return (
@@ -26,7 +29,7 @@ const MyInput: FC<ComponentPropsType> = (
         {label}
       </span>
       <input
-        className={s.input}
+        className={s.input + ' ' + className} 
         name={name}
         type={type}
         value={value}

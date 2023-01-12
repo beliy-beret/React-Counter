@@ -1,8 +1,8 @@
 import {FC} from 'react';
-import CounterValue from "../CounterValue/CounterValue";
-import MyButton from "../MyButton/MyButton";
+import CounterValue from '../CounterValue/CounterValue';
+import MyButton from '../MyButton/MyButton';
 import s from './style.module.css';
-import {CounterType} from "../../App";
+import {CounterType} from '../../App';
 
 type ComponentPropsType = {
   isEdit: boolean
@@ -30,7 +30,7 @@ const Counter: FC<ComponentPropsType> = (
         <MyButton onClick={resetCurrentValue} disabled={counter.current <= counter.min}>reset</MyButton>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Counter;
