@@ -16,18 +16,13 @@ const App: FC = () => {
   const [error, setError] = useState<string>('');
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
-  // Counter options
-  const initialCounterValue: CounterType = {
-    min: 0,
-    max: 1,
-    current: 0,
-  };
-  const initialCounter = () => {
+  // Counter options  
+  const initialCounter = (): CounterType => {
     const storageCounter = localStorage.getItem('counter');
     if (storageCounter) {
       return JSON.parse(storageCounter);
     }
-    return initialCounterValue;
+    return { min: 0, max: 1, current: 0 };
   };
   const [counter, setCounter] = useState<CounterType>(initialCounter);
 

@@ -1,7 +1,8 @@
-import { ChangeEvent, FC, useEffect, useState } from 'react';
-import s from './style.module.css';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+
 import MyButton from '../MyButton/MyButton';
 import MyInput from '../MyInput/MyInput';
+import s from './style.module.css';
 
 type ComponentPropsType = {
 	setError: (message: string) => void
@@ -25,6 +26,8 @@ const CounterSetting: FC<ComponentPropsType> = ({
 	setError,
 	error
 }) => {
+	console.log('Render CounterSetting');
+
 	// Form validation
 	const [formFieldValid, setFormFieldValid] = useState<FormValidType>({
 		minIsValid: true,
@@ -105,4 +108,8 @@ const CounterSetting: FC<ComponentPropsType> = ({
 	);
 };
 
-export default CounterSetting;
+const isEqual = (prev: ComponentPropsType, next: ComponentPropsType): boolean => {
+	return prev.maxValue === next.maxValue && prev.minValue === next.minValue;
+};
+
+export default React.memo(CounterSetting, isEqual);

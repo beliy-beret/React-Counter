@@ -1,6 +1,6 @@
-import {FC} from 'react';
+import { CounterType } from '../../App';
+import { FC } from 'react';
 import s from './style.module.css';
-import {CounterType} from '../../App';
 
 type ComponentPropsType = {
   counter: CounterType
@@ -8,7 +8,7 @@ type ComponentPropsType = {
   isEdit: boolean
 }
 
-const CounterValue: FC<ComponentPropsType> = ({counter, error, isEdit}) => {
+const CounterValue: FC<ComponentPropsType> = ({ counter, error, isEdit }) => {
 
   const className = s.container + ' ' +
     (counter.current < counter.max ? s.onLimit : s.noLimit) + ' ' +
@@ -17,9 +17,9 @@ const CounterValue: FC<ComponentPropsType> = ({counter, error, isEdit}) => {
 
 
   const getValue = () => {
-    if(error){
+    if (error) {
       return <span className={s.message}>{error}</span>;
-    } else if(isEdit){
+    } else if (isEdit) {
       return <span className={s.message}>Enter value and press `set`</span>;
     } else {
       return <span className={s.value}>{counter.current}</span>;
