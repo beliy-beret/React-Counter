@@ -1,8 +1,9 @@
-import { FC, useEffect, useState } from 'react';
-import Counter from './components/Counter/Counter';
 import CounterSetting, {
   FormDataType,
 } from './components/CounterSetting/CounterSetting';
+import { FC, useEffect, useState } from 'react';
+
+import Counter from './components/Counter/Counter';
 
 export type CounterType = {
   min: number;
@@ -53,8 +54,8 @@ const App: FC = () => {
     if (counter.current < counter.min) {
       setCounter({ ...counter, current: counter.min });
     }
-    if(counter.current > counter.max){
-      setCounter({...counter, current: counter.max});
+    if (counter.current > counter.max) {
+      setCounter({ ...counter, current: counter.max });
     }
   }, [counter]);
 
