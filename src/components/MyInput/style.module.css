@@ -6,4 +6,11 @@
 .input {
     padding: 0.3rem 0.8rem;
     border-radius: 5px;
+    font-size: 1rem;
+}
+input.error {
+    border: 3px solid red;
+}
+input:focus.error {
+    outline-color: red;
 }

@@ -88,7 +88,7 @@ const CounterSetting: FC<ComponentPropsType> = ({
 					label={'min value'}
 					value={formData.min}
 					onChange={formDataHandler}
-					className={error ? s.error : ''}
+					error={error}
 				/>
 			</div>
 			<div className={s.field}>
@@ -98,7 +98,7 @@ const CounterSetting: FC<ComponentPropsType> = ({
 					label={'max value'}
 					value={formData.max}
 					onChange={formDataHandler}
-					className={error ? s.error : ''}
+					error={error}
 				/>
 			</div>
 			<MyButton onClick={submitHandler} disabled={!formIsValid} variant={'primary'}>

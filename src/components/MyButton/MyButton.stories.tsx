@@ -1,7 +1,7 @@
 import MyButton from './MyButton';
 
 export default {
-  title: 'Button',
+  title: 'MyButton',
   component: MyButton
 };
 
