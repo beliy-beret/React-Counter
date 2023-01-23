@@ -101,7 +101,7 @@ const CounterSetting: FC<ComponentPropsType> = ({
 					className={error ? s.error : ''}
 				/>
 			</div>
-			<MyButton onClick={submitHandler} disabled={!formIsValid}>
+			<MyButton onClick={submitHandler} disabled={!formIsValid} variant={'primary'}>
 				set
 			</MyButton>
 		</div>

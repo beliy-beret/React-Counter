@@ -10,4 +10,15 @@
 .btn:disabled {
     background-color: #525256;
     opacity: 0.5;
+    box-shadow: none;
+}
+.default {
+    background-color: inherit;    
+}
+.primary {
+    background-color: violet;
+}
+.secondary {
+    background-color: rgb(17, 17, 17);
+    color: #FFFFFF
 }

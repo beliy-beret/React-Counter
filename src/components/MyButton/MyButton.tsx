@@ -1,17 +1,18 @@
-import {FC, ReactNode} from 'react';
+import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
+
 import s from './style.module.css';
 
-type ComponentPropsType = {
-  children: ReactNode
-  onClick: () => void
-  disabled?: boolean
+interface ComponentPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode,
+  variant?: 'default' | 'primary' | 'secondary'
 }
 
 const MyButton: FC<ComponentPropsType> = (
-  {children, onClick, disabled}
+  { children, variant = 'default', ...rest }
 ) => {
+  const btnClass = `${s.btn} ${s[variant]}`;
   return (
-    <button className={s.btn} onClick={onClick} disabled={disabled}>{children}</button>
+    <button className={btnClass} {...rest}>{children}</button>
   );
 };
 
