@@ -23,12 +23,24 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint --debug src/",
-    "lint:write": "eslint --debug src/ --fix"
+    "lint:write": "eslint --debug src/ --fix",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -44,15 +56,32 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/builder-webpack5": "^6.5.15",
+    "@storybook/manager-webpack5": "^6.5.15",
+    "@storybook/node-logger": "^6.5.15",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.15",
+    "@storybook/testing-library": "^0.0.13",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-storybook": "^0.6.10",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
-    "prettier": "2.8.3"
+    "prettier": "2.8.3",
+    "prop-types": "^15.8.1",
+    "webpack": "^5.75.0"
   },
-  "lint-staged": {    
-    "*.(js|jsx|tsx|ts)": ["yarn lint:write", "git add ."]  
+  "lint-staged": {
+    "*.(js|jsx|tsx|ts)": [
+      "yarn lint:write",
+      "git add ."
+    ]
   }
 }
