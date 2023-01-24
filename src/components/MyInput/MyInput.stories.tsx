@@ -1,14 +1,24 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import MyInput from './MyInput';
 
 export default {
   title: 'MyInput',
-  component: MyInput
+  component: MyInput,
+  args: {
+    label: 'Input label',
+    type: 'number'
+  }
+} as ComponentMeta<typeof MyInput>;
+
+const Template: ComponentStory<typeof MyInput> = (args) => <MyInput {...args} />;
+
+export const Valid = Template.bind({});
+Valid.args = {
+  error: false
 };
 
-export const Valid = () => <MyInput value={0} onChange={() => {
-  console.log('');
-}} type={'number'} label={'Valid'} />;
-
-export const NoValid = () => <MyInput value={0} onChange={() => {
-  console.log('');
-}} type={'number'} label={'Valid'} error={true} />;
+export const NoValid = Template.bind({});
+NoValid.args = {
+  error: true
+};

@@ -1,12 +1,12 @@
-import {FC} from 'react';
+import { CounterType } from '../../App';
 import CounterValue from '../CounterValue/CounterValue';
+import { FC } from 'react';
 import MyButton from '../MyButton/MyButton';
 import s from './style.module.css';
-import {CounterType} from '../../App';
 
 type ComponentPropsType = {
   isEdit: boolean
-  error: string
+  errorMessage: string
   counter: CounterType
   resetCurrentValue: () => void
   incrementCurrentValue: () => void
@@ -14,7 +14,7 @@ type ComponentPropsType = {
 
 const Counter: FC<ComponentPropsType> = (
   {
-    error,
+    errorMessage,
     counter,
     resetCurrentValue,
     incrementCurrentValue,
@@ -22,9 +22,9 @@ const Counter: FC<ComponentPropsType> = (
   }
 ) => {
 
-  return(
+  return (
     <div className={s.counter}>
-      <CounterValue counter={counter} error={error} isEdit={isEdit}/>
+      <CounterValue counter={counter} errorMessage={errorMessage} isEdit={isEdit} />
       <div className={s.btnBlock}>
         <MyButton onClick={incrementCurrentValue} disabled={isEdit || counter.current >= counter.max}>inc</MyButton>
         <MyButton onClick={resetCurrentValue} disabled={counter.current <= counter.min}>reset</MyButton>

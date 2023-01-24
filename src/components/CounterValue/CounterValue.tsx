@@ -4,21 +4,21 @@ import s from './style.module.css';
 
 type ComponentPropsType = {
   counter: CounterType
-  error: string
+  errorMessage: string
   isEdit: boolean
 }
 
-const CounterValue: FC<ComponentPropsType> = ({ counter, error, isEdit }) => {
+const CounterValue: FC<ComponentPropsType> = ({ counter, errorMessage, isEdit }) => {
 
   const className = s.container + ' ' +
     (counter.current < counter.max ? s.onLimit : s.noLimit) + ' ' +
-    (error ? s.noLimit : s.onLimit) + ' ' +
+    (errorMessage ? s.noLimit : s.onLimit) + ' ' +
     (isEdit && '');
 
 
   const getValue = () => {
-    if (error) {
-      return <span className={s.message}>{error}</span>;
+    if (errorMessage) {
+      return <span className={s.message}>{errorMessage}</span>;
     } else if (isEdit) {
       return <span className={s.message}>Enter value and press `set`</span>;
     } else {

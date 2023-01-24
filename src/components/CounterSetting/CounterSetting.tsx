@@ -1,11 +1,11 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, memo, useEffect, useState } from 'react';
 
 import MyButton from '../MyButton/MyButton';
 import MyInput from '../MyInput/MyInput';
 import s from './style.module.css';
 
 type ComponentPropsType = {
-	setError: (message: string) => void
+	setErrorMessage: (message: string) => void
 	toggleIsEdit: (value: boolean) => void
 	submit: (formData: FormDataType) => void
 	minValue: number
@@ -23,7 +23,7 @@ const CounterSetting: FC<ComponentPropsType> = ({
 	minValue,
 	maxValue,
 	toggleIsEdit,
-	setError,
+	setErrorMessage,
 	error
 }) => {
 	console.log('Render CounterSetting');
@@ -65,12 +65,12 @@ const CounterSetting: FC<ComponentPropsType> = ({
 	useEffect(() => {
 		if (formData.min < 0) {
 			setFormFieldValid({ ...formFieldValid, minIsValid: false });
-			setError('Invalid value. Min value must be greater than "0"');
+			setErrorMessage('Invalid value. Min value must be greater than "0"');
 		} else if (formData.max <= formData.min) {
 			setFormFieldValid({ ...formFieldValid, maxIsValid: false });
-			setError('Invalid value. Max value must be greater than min value');
+			setErrorMessage('Invalid value. Max value must be greater than min value');
 		} else {
-			setError('');
+			setErrorMessage('');
 			setFormFieldValid({
 				...formFieldValid,
 				maxIsValid: true,
@@ -112,4 +112,4 @@ const isEqual = (prev: ComponentPropsType, next: ComponentPropsType): boolean =>
 	return prev.maxValue === next.maxValue && prev.minValue === next.minValue;
 };
 
-export default React.memo(CounterSetting, isEqual);
+export default memo(CounterSetting, isEqual);

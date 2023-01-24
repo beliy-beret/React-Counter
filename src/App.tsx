@@ -13,7 +13,7 @@ export type CounterType = {
 
 const App: FC = () => {
   // Form options
-  const [error, setError] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
   // Counter options  
@@ -38,9 +38,9 @@ const App: FC = () => {
   const setCounterSetting = (formData: FormDataType) => {
     if (formData.min >= 0 && formData.max > formData.min) {
       setCounter({ ...counter, ...formData });
-      setError('');
+      setErrorMessage('');
     } else {
-      setError('Invalid form data');
+      setErrorMessage('Invalid form data');
     }
   };
 
@@ -60,15 +60,15 @@ const App: FC = () => {
         submit={setCounterSetting}
         maxValue={counter.max}
         minValue={counter.min}
-        setError={setError}
+        setErrorMessage={setErrorMessage}
         toggleIsEdit={setIsEdit}
-        error={!!error}
+        error={!!errorMessage}
       />
       <Counter
         incrementCurrentValue={incrementCurrentValue}
         resetCurrentValue={resetCurrentValue}
         counter={counter}
-        error={error}
+        errorMessage={errorMessage}
         isEdit={isEdit}
       />
     </div>
