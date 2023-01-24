@@ -26,7 +26,6 @@ const CounterSetting: FC<ComponentPropsType> = ({
 	setErrorMessage,
 	error
 }) => {
-	console.log('Render CounterSetting');
 
 	// Form validation
 	const [formFieldValid, setFormFieldValid] = useState<FormValidType>({

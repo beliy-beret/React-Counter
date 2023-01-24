@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, InputHTMLAttributes } from 'react';
+import { ChangeEvent, FC, InputHTMLAttributes, useState } from 'react';
 
 import s from './style.module.css';
 
@@ -24,17 +24,22 @@ const MyInput: FC<ComponentPropsType> = (
     ...rest
   }
 ) => {
+  const [intValue, setINntValue] = useState(value || 0);
   const inputClassName = s.input + ' ' + className + ' ' + (error ? s.error : '');
+  const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange && onChange(e);
+    setINntValue(+e.currentTarget.value);
+  };
   return (
     <div className={s.inputComponent}>
-      <span className={s.label}>
+      <label className={s.label}>
         {label}
-      </span>
+      </label>
       <input
         className={inputClassName}
         type={type}
-        value={value}
-        onChange={onChange}
+        value={value || intValue}
+        onChange={handleChangeValue}
         {...rest}
       />
     </div>
