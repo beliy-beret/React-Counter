@@ -12,7 +12,7 @@ const MyButton: FC<ComponentPropsType> = (
 ) => {
   const btnClass = `${s.btn} ${s[variant]}`;
   return (
-    <button className={btnClass} {...rest}>{children}</button>
+    <button data-testid={'myButton'} className={btnClass} {...rest}>{children}</button>
   );
 };
 

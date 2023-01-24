@@ -7,8 +7,8 @@ type InputTypes = 'text' | 'number' | 'email' | 'phone' | 'password'
 interface ComponentPropsType extends InputHTMLAttributes<HTMLInputElement> {
   type: InputTypes
   label: string
-  value: number
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  value?: number
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   className?: string
   error?: boolean
 }
@@ -24,11 +24,11 @@ const MyInput: FC<ComponentPropsType> = (
     ...rest
   }
 ) => {
-  const [intValue, setINntValue] = useState(value || 0);
+  const [intValue, setIntValue] = useState(value || 0);
   const inputClassName = s.input + ' ' + className + ' ' + (error ? s.error : '');
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(e);
-    setINntValue(+e.currentTarget.value);
+    setIntValue(Number(e.currentTarget.value));
   };
   return (
     <div className={s.inputComponent}>
