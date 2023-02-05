@@ -1,55 +1,55 @@
-import CounterSetting, { FormDataType } from './components/CounterSetting/CounterSetting';
-import { FC, useEffect, useState } from 'react';
+import CounterSetting, { FormDataType } from './components/CounterSetting/CounterSetting'
+import { FC, useEffect, useState } from 'react'
 
-import Counter from './components/Counter/Counter';
+import Counter from './components/Counter/Counter'
 
 export type CounterType = {
-  min: number;
-  max: number;
-  current: number;
-};
+  min: number
+  max: number
+  current: number
+}
 
 const App: FC = () => {
   // Form options
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  const [isEdit, setIsEdit] = useState<boolean>(false)
 
   // Counter options
   const initialCounter = (): CounterType => {
-    const storageCounter = localStorage.getItem('counter');
+    const storageCounter = localStorage.getItem('counter')
     if (storageCounter) {
-      return JSON.parse(storageCounter);
+      return JSON.parse(storageCounter)
     }
-    return { min: 0, max: 1, current: 0 };
-  };
-  const [counter, setCounter] = useState<CounterType>(initialCounter);
+    return { min: 0, max: 1, current: 0 }
+  }
+  const [counter, setCounter] = useState<CounterType>(initialCounter)
 
   const incrementCurrentValue = () => {
     if (counter.current < counter.max) {
-      setCounter({ ...counter, current: counter.current + 1 });
+      setCounter({ ...counter, current: counter.current + 1 })
     }
-  };
+  }
 
-  const resetCurrentValue = () => setCounter({ ...counter, current: counter.min });
+  const resetCurrentValue = () => setCounter({ ...counter, current: counter.min })
 
   const setCounterSetting = (formData: FormDataType) => {
     if (formData.min >= 0 && formData.max > formData.min) {
-      setCounter({ ...counter, ...formData });
-      setErrorMessage('');
+      setCounter({ ...counter, ...formData })
+      setErrorMessage('')
     } else {
-      setErrorMessage('Invalid form data');
+      setErrorMessage('Invalid form data')
     }
-  };
+  }
 
   useEffect(() => {
-    localStorage.setItem('counter', JSON.stringify(counter));
+    localStorage.setItem('counter', JSON.stringify(counter))
     if (counter.current < counter.min) {
-      setCounter({ ...counter, current: counter.min });
+      setCounter({ ...counter, current: counter.min })
     }
     if (counter.current > counter.max) {
-      setCounter({ ...counter, current: counter.max });
+      setCounter({ ...counter, current: counter.max })
     }
-  }, [counter]);
+  }, [counter])
 
   return (
     <div className={'App'}>
@@ -69,7 +69,7 @@ const App: FC = () => {
         isEdit={isEdit}
       />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

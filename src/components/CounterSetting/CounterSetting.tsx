@@ -1,22 +1,22 @@
-import { ChangeEvent, FC, memo, useEffect, useState } from 'react';
+import { ChangeEvent, FC, memo, useEffect, useState } from 'react'
 
-import MyButton from '../MyButton/MyButton';
-import MyInput from '../MyInput/MyInput';
-import s from './style.module.css';
+import MyButton from '../MyButton/MyButton'
+import MyInput from '../MyInput/MyInput'
+import s from './style.module.css'
 
 type ComponentPropsType = {
-  setErrorMessage: (message: string) => void;
-  toggleIsEdit: (value: boolean) => void;
-  submit: (formData: FormDataType) => void;
-  minValue: number;
-  maxValue: number;
-  error: boolean;
-};
-type FormValidType = Record<'minIsValid' | 'maxIsValid', boolean>;
+  setErrorMessage: (message: string) => void
+  toggleIsEdit: (value: boolean) => void
+  submit: (formData: FormDataType) => void
+  minValue: number
+  maxValue: number
+  error: boolean
+}
+type FormValidType = Record<'minIsValid' | 'maxIsValid', boolean>
 export type FormDataType = {
-  min: number;
-  max: number;
-};
+  min: number
+  max: number
+}
 
 const CounterSetting: FC<ComponentPropsType> = ({
   submit,
@@ -30,52 +30,52 @@ const CounterSetting: FC<ComponentPropsType> = ({
   const [formFieldValid, setFormFieldValid] = useState<FormValidType>({
     minIsValid: true,
     maxIsValid: true,
-  });
-  const formIsValid = formFieldValid.minIsValid && formFieldValid.maxIsValid;
+  })
+  const formIsValid = formFieldValid.minIsValid && formFieldValid.maxIsValid
 
   // Form data
-  const MAX_VALUE = 'maxValue';
-  const MIN_VALUE = 'minValue';
+  const MAX_VALUE = 'maxValue'
+  const MIN_VALUE = 'minValue'
   const [formData, setFormData] = useState<FormDataType>({
     min: minValue,
     max: maxValue,
-  });
+  })
   const formDataHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    toggleIsEdit(true);
-    const newValue = Number(e.currentTarget.value.trim());
+    toggleIsEdit(true)
+    const newValue = Number(e.currentTarget.value.trim())
     if (e.currentTarget.name === MIN_VALUE) {
-      setFormData({ ...formData, min: newValue });
+      setFormData({ ...formData, min: newValue })
     }
     if (e.currentTarget.name === MAX_VALUE) {
-      setFormData({ ...formData, max: newValue });
+      setFormData({ ...formData, max: newValue })
     }
-  };
+  }
 
   // Form submit
   const submitHandler = () => {
     if (formIsValid) {
-      toggleIsEdit(false);
-      submit(formData);
+      toggleIsEdit(false)
+      submit(formData)
     }
-  };
+  }
 
   //Check formField validation
   useEffect(() => {
     if (formData.min < 0) {
-      setFormFieldValid({ ...formFieldValid, minIsValid: false });
-      setErrorMessage('Invalid value. Min value must be greater than "0"');
+      setFormFieldValid({ ...formFieldValid, minIsValid: false })
+      setErrorMessage('Invalid value. Min value must be greater than "0"')
     } else if (formData.max <= formData.min) {
-      setFormFieldValid({ ...formFieldValid, maxIsValid: false });
-      setErrorMessage('Invalid value. Max value must be greater than min value');
+      setFormFieldValid({ ...formFieldValid, maxIsValid: false })
+      setErrorMessage('Invalid value. Max value must be greater than min value')
     } else {
-      setErrorMessage('');
+      setErrorMessage('')
       setFormFieldValid({
         ...formFieldValid,
         maxIsValid: true,
         minIsValid: true,
-      });
+      })
     }
-  }, [formData]);
+  }, [formData])
 
   return (
     <div className={s.form}>
@@ -103,11 +103,11 @@ const CounterSetting: FC<ComponentPropsType> = ({
         set
       </MyButton>
     </div>
-  );
-};
+  )
+}
 
 const isEqual = (prev: ComponentPropsType, next: ComponentPropsType): boolean => {
-  return prev.maxValue === next.maxValue && prev.minValue === next.minValue;
-};
+  return prev.maxValue === next.maxValue && prev.minValue === next.minValue
+}
 
-export default memo(CounterSetting, isEqual);
+export default memo(CounterSetting, isEqual)

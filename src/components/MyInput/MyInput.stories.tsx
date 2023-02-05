@@ -1,6 +1,6 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import MyInput from './MyInput';
+import MyInput from './MyInput'
 
 export default {
   title: 'MyInput',
@@ -9,16 +9,16 @@ export default {
     label: 'Input label',
     type: 'number',
   },
-} as ComponentMeta<typeof MyInput>;
+} as ComponentMeta<typeof MyInput>
 
-const Template: ComponentStory<typeof MyInput> = (args) => <MyInput {...args} />;
+const Template: ComponentStory<typeof MyInput> = (args) => <MyInput {...args} />
 
-export const Valid = Template.bind({});
+export const Valid = Template.bind({})
 Valid.args = {
   error: false,
-};
+}
 
-export const NoValid = Template.bind({});
+export const NoValid = Template.bind({})
 NoValid.args = {
   error: true,
-};
+}

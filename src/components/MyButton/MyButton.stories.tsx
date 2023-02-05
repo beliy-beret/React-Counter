@@ -1,6 +1,6 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import MyButton from './MyButton';
+import MyButton from './MyButton'
 
 export default {
   title: 'MyButton',
@@ -8,21 +8,21 @@ export default {
   args: {
     children: 'Button',
   },
-} as ComponentMeta<typeof MyButton>;
+} as ComponentMeta<typeof MyButton>
 
-const Template: ComponentStory<typeof MyButton> = (args) => <MyButton {...args} />;
+const Template: ComponentStory<typeof MyButton> = (args) => <MyButton {...args} />
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   variant: 'default',
-};
+}
 
-export const Primary = Template.bind({});
+export const Primary = Template.bind({})
 Primary.args = {
   variant: 'primary',
-};
+}
 
-export const Secondary = Template.bind({});
+export const Secondary = Template.bind({})
 Secondary.args = {
   variant: 'secondary',
-};
+}
