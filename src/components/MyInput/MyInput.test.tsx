@@ -22,7 +22,9 @@ test('Label should be in document', () => {
 });
 
 test('Input classList should contain Error class', () => {
-  render(<MyInput label='Test' value={5} onChange={() => console.log('')} type={'number'} error={true} />);
+  render(
+    <MyInput label='Test' value={5} onChange={() => console.log('')} type={'number'} error={true} />
+  );
   const input = screen.getByRole<HTMLInputElement>('spinbutton');
   expect(input.classList.contains(s.error)).toBeTruthy();
 });

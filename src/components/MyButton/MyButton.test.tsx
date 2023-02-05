@@ -5,12 +5,16 @@ import s from './style.module.css';
 
 test('Button classList should contain "primary" class', () => {
   render(<MyButton variant={'primary'}>Test</MyButton>);
-  expect(screen.getByTestId<HTMLButtonElement>('myButton').classList.contains(s.primary)).toBeTruthy();
+  expect(
+    screen.getByTestId<HTMLButtonElement>('myButton').classList.contains(s.primary)
+  ).toBeTruthy();
 });
 
 test('Button classList should contain "secondary" class', () => {
   render(<MyButton variant={'secondary'}>Test</MyButton>);
-  expect(screen.getByTestId<HTMLButtonElement>('myButton').classList.contains(s.secondary)).toBeTruthy();
+  expect(
+    screen.getByTestId<HTMLButtonElement>('myButton').classList.contains(s.secondary)
+  ).toBeTruthy();
 });
 
 test('Button should contain text', () => {

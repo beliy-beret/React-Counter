@@ -6,23 +6,23 @@ export default {
   title: 'MyButton',
   component: MyButton,
   args: {
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 } as ComponentMeta<typeof MyButton>;
 
 const Template: ComponentStory<typeof MyButton> = (args) => <MyButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  variant: 'default'
+  variant: 'default',
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
-  variant: 'primary'
+  variant: 'primary',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  variant: 'secondary'
+  variant: 'secondary',
 };

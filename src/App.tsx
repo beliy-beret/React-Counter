@@ -1,6 +1,4 @@
-import CounterSetting, {
-  FormDataType,
-} from './components/CounterSetting/CounterSetting';
+import CounterSetting, { FormDataType } from './components/CounterSetting/CounterSetting';
 import { FC, useEffect, useState } from 'react';
 
 import Counter from './components/Counter/Counter';
@@ -16,7 +14,7 @@ const App: FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
-  // Counter options  
+  // Counter options
   const initialCounter = (): CounterType => {
     const storageCounter = localStorage.getItem('counter');
     if (storageCounter) {
@@ -32,8 +30,7 @@ const App: FC = () => {
     }
   };
 
-  const resetCurrentValue = () =>
-    setCounter({ ...counter, current: counter.min });
+  const resetCurrentValue = () => setCounter({ ...counter, current: counter.min });
 
   const setCounterSetting = (formData: FormDataType) => {
     if (formData.min >= 0 && formData.max > formData.min) {

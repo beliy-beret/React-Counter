@@ -3,18 +3,20 @@ import { FC } from 'react';
 import s from './style.module.css';
 
 type ComponentPropsType = {
-  counter: CounterType
-  errorMessage: string
-  isEdit: boolean
-}
+  counter: CounterType;
+  errorMessage: string;
+  isEdit: boolean;
+};
 
 const CounterValue: FC<ComponentPropsType> = ({ counter, errorMessage, isEdit }) => {
-
-  const className = s.container + ' ' +
-    (counter.current < counter.max ? s.onLimit : s.noLimit) + ' ' +
-    (errorMessage ? s.noLimit : s.onLimit) + ' ' +
+  const className =
+    s.container +
+    ' ' +
+    (counter.current < counter.max ? s.onLimit : s.noLimit) +
+    ' ' +
+    (errorMessage ? s.noLimit : s.onLimit) +
+    ' ' +
     (isEdit && '');
-
 
   const getValue = () => {
     if (errorMessage) {
@@ -26,11 +28,7 @@ const CounterValue: FC<ComponentPropsType> = ({ counter, errorMessage, isEdit })
     }
   };
 
-  return (
-    <div className={className}>
-      {getValue()}
-    </div>
-  );
+  return <div className={className}>{getValue()}</div>;
 };
 
 export default CounterValue;
