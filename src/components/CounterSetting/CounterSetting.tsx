@@ -76,6 +76,7 @@ const CounterSetting: FC<ComponentPropsType> = ({
       })
     }
   }, [formData])
+  console.log('render')
 
   return (
     <div className={s.form}>

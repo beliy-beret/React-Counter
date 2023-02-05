@@ -1,14 +1,15 @@
 import CounterSetting, { FormDataType } from './components/CounterSetting/CounterSetting'
-import { FC, useEffect, useState } from 'react'
 import {
-  getLocalStorageData,
   incrementCurrent,
   resetCurrent,
+  setErrorMessage,
   setMinMax,
+  toggleIsEditing,
 } from './store/counterSlice'
 import { useAppDispatch, useAppSelector } from './store/hooks/reduxHooks'
 
 import Counter from './components/Counter/Counter'
+import { FC } from 'react'
 
 export type CounterType = {
   min: number
@@ -18,10 +19,9 @@ export type CounterType = {
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
-  const counter = useAppSelector((state) => state.counter)
-  // Form options
-  const [errorMessage, setErrorMessage] = useState<string>('')
-  const [isEdit, setIsEdit] = useState<boolean>(false)
+  const { counter, isEditing, errorMessage } = useAppSelector((state) => state.counter)
+
+  const errorMessageHandler = (message: string) => dispatch(setErrorMessage(message))
 
   const incrementCurrentValue = () => {
     dispatch(incrementCurrent())
@@ -31,15 +31,13 @@ const App: FC = () => {
   const setCounterSetting = (formData: FormDataType) => {
     if (formData.min >= 0 && formData.max > formData.min) {
       dispatch(setMinMax(formData))
-      setErrorMessage('')
+      dispatch(setErrorMessage(''))
     } else {
-      setErrorMessage('Invalid form data')
+      errorMessageHandler('Invalid form data')
     }
   }
 
-  useEffect(() => {
-    localStorage.setItem('counter', JSON.stringify(counter))
-  }, [counter])
+  const isEditingHandler = (status: boolean) => dispatch(toggleIsEditing(status))
 
   return (
     <div className={'App'}>
@@ -47,8 +45,8 @@ const App: FC = () => {
         submit={setCounterSetting}
         maxValue={counter.max}
         minValue={counter.min}
-        setErrorMessage={setErrorMessage}
-        toggleIsEdit={setIsEdit}
+        setErrorMessage={errorMessageHandler}
+        toggleIsEdit={isEditingHandler}
         error={!!errorMessage}
       />
       <Counter
@@ -56,7 +54,7 @@ const App: FC = () => {
         resetCurrentValue={resetCurrentValue}
         counter={counter}
         errorMessage={errorMessage}
-        isEdit={isEdit}
+        isEdit={isEditing}
       />
     </div>
   )
