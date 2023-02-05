@@ -1,5 +1,12 @@
 import CounterSetting, { FormDataType } from './components/CounterSetting/CounterSetting'
 import { FC, useEffect, useState } from 'react'
+import {
+  getLocalStorageData,
+  incrementCurrent,
+  resetCurrent,
+  setMinMax,
+} from './store/counterSlice'
+import { useAppDispatch, useAppSelector } from './store/hooks/reduxHooks'
 
 import Counter from './components/Counter/Counter'
 
@@ -10,31 +17,20 @@ export type CounterType = {
 }
 
 const App: FC = () => {
+  const dispatch = useAppDispatch()
+  const counter = useAppSelector((state) => state.counter)
   // Form options
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [isEdit, setIsEdit] = useState<boolean>(false)
 
-  // Counter options
-  const initialCounter = (): CounterType => {
-    const storageCounter = localStorage.getItem('counter')
-    if (storageCounter) {
-      return JSON.parse(storageCounter)
-    }
-    return { min: 0, max: 1, current: 0 }
-  }
-  const [counter, setCounter] = useState<CounterType>(initialCounter)
-
   const incrementCurrentValue = () => {
-    if (counter.current < counter.max) {
-      setCounter({ ...counter, current: counter.current + 1 })
-    }
+    dispatch(incrementCurrent())
   }
-
-  const resetCurrentValue = () => setCounter({ ...counter, current: counter.min })
+  const resetCurrentValue = () => dispatch(resetCurrent())
 
   const setCounterSetting = (formData: FormDataType) => {
     if (formData.min >= 0 && formData.max > formData.min) {
-      setCounter({ ...counter, ...formData })
+      dispatch(setMinMax(formData))
       setErrorMessage('')
     } else {
       setErrorMessage('Invalid form data')
@@ -43,12 +39,6 @@ const App: FC = () => {
 
   useEffect(() => {
     localStorage.setItem('counter', JSON.stringify(counter))
-    if (counter.current < counter.min) {
-      setCounter({ ...counter, current: counter.min })
-    }
-    if (counter.current > counter.max) {
-      setCounter({ ...counter, current: counter.max })
-    }
   }, [counter])
 
   return (
