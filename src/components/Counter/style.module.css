@@ -1,22 +1,19 @@
 .counter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    width: 30%;
-    height: 300px;
-    max-height: 40%;
-    background-color: #2f2f31;
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 0 15px 0 #810CA8;
-    color: #E5B8F4;
+  color: #e5b8f4;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.8rem;
+  min-height: 200px;
+  background-color: #2f2f31;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 0 15px 0 #810ca8;
+  width: 95%;
 }
 .btnBlock {
-    grid-row: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }

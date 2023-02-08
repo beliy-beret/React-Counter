@@ -1,25 +1,21 @@
 .container {
-    width: 90%;
-    border-radius: 5px;
-    text-align: center;
-    flex-basis: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
+  background-color: #646060;
+  border-radius: 5px;
+  height: 100%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .value {
-    font-size: 6rem;
-    margin: 0;
+  font-size: 5rem;
+  margin: 0;
 }
 .message {
-    font-size: 2rem;
-}
-.onLimit {
-    color: #E5B8F4;
-    background-color: #646060;
+  font-size: 1.2rem;
 }
 .noLimit {
-    background-color: #ee5d5d;
-    color: #3b3838;
+  background-color: #ee5d5d;
+  color: #3b3838;
 }

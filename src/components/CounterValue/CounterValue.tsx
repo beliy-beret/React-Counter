@@ -12,9 +12,9 @@ const CounterValue: FC<ComponentPropsType> = ({ counter, errorMessage, isEdit })
   const className =
     s.container +
     ' ' +
-    (counter.current < counter.max ? s.onLimit : s.noLimit) +
+    (counter.current >= counter.max && s.noLimit) +
     ' ' +
-    (errorMessage ? s.noLimit : s.onLimit) +
+    (errorMessage ? s.noLimit : '') +
     ' ' +
     (isEdit && '')
 

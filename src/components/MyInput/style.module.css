@@ -1,16 +1,16 @@
-.inputComponent{
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+.inputComponent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .input {
-    padding: 0.3rem 0.8rem;
-    border-radius: 5px;
-    font-size: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 input.error {
-    border: 3px solid red;
+  border: 3px solid red;
 }
 input:focus.error {
-    outline-color: red;
+  outline-color: red;
 }

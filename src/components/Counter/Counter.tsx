@@ -21,7 +21,9 @@ const Counter: FC<ComponentPropsType> = ({
 }) => {
   return (
     <div className={s.counter}>
-      <CounterValue counter={counter} errorMessage={errorMessage} isEdit={isEdit} />
+      <div>
+        <CounterValue counter={counter} errorMessage={errorMessage} isEdit={isEdit} />
+      </div>
       <div className={s.btnBlock}>
         <MyButton
           onClick={incrementCurrentValue}
