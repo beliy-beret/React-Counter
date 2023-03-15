@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { getLocalStorageData, setDataToLocalStorage } from './../utils/localStorage'
 
 import { FormDataType } from './../components/CounterSetting/CounterSetting'
 
@@ -15,10 +14,8 @@ export type InitialState = {
   isEditing: boolean
 }
 
-const initialCounter = getLocalStorageData('counter')
-
 const initialState = (): InitialState => ({
-  counter: initialCounter || { min: 0, max: 1, current: 0 },
+  counter: { min: 0, max: 1, current: 0 },
   errorMessage: '',
   isEditing: false,
 })
@@ -30,12 +27,10 @@ export const counterSlice = createSlice({
     incrementCurrent: (state) => {
       if (state.counter.current < state.counter.max) {
         state.counter.current += 1
-        setDataToLocalStorage('counter', state.counter)
       }
     },
     resetCurrent: (state) => {
       state.counter.current = state.counter.min
-      setDataToLocalStorage('counter', state.counter)
     },
     setMinMax: (state, action: PayloadAction<FormDataType>) => {
       state.counter.min = action.payload.min
@@ -46,7 +41,6 @@ export const counterSlice = createSlice({
       if (action.payload.max < state.counter.current) {
         state.counter.current = action.payload.max
       }
-      setDataToLocalStorage('counter', state.counter)
     },
     setErrorMessage: (state, action: PayloadAction<string>) => {
       state.errorMessage = action.payload
