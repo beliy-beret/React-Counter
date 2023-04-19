@@ -20,7 +20,6 @@ export type CounterType = {
 const App: FC = () => {
   const dispatch = useAppDispatch()
   const { counter, isEditing, errorMessage } = useAppSelector((state) => state.counter)
-
   const errorMessageHandler = (message: string) => dispatch(setErrorMessage(message))
 
   const incrementCurrentValue = () => {
